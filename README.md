@@ -5,9 +5,10 @@
 * Fork this Repository
 * Clone your forked repo to your computer.
 * Complete the activity below.
+  * COMMIT YOUR WORK EVERY 15-20 MINUTES
 * Push your solution to your forked repo
-* Submit a pull request from your repository to this repository
-  * Put your name in your PR!
+* Submit a pull request AT NOON from your repository to this repository
+  * Put your name in your PR and the last iteration you completed
 
 ## Iteration 1
 
