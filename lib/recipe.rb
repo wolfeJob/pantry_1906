@@ -1,4 +1,5 @@
 class Recipe
+  
   attr_reader :name, :ingredients_required
   def initialize(name)
     @name = name
@@ -18,9 +19,6 @@ class Recipe
   end
 
   def total_calories
-  #8 * 30 = 240
-  #2 * 100 = 200 = 440
-  @ingredients_required.map{|k,v| k.calories * v}.sum
+    @ingredients_required.map{|k,v| k.calories * v}.sum
   end
-
 end
