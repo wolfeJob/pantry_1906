@@ -13,12 +13,13 @@ class Pantry
   end
 
   def enough_ingredients_for?(recipe)
-  arg_ingredients = recipe.ingredients
-  arg_ingredients.each do |ingredient|
-    @stock.find_all do |stocked_ingredient, amount|
-      if ingredient == stocked_ingredient
-        
-
-
+    arg_ingredients = recipe.ingredients
+    # [@cheese, @mac]
+    arg_ingredients.all? do |ingredient|
+      # binding.pry
+   stock_check(ingredient) >= recipe.amount_required(ingredient)
+    end
+    # verdict
   end
+
 end

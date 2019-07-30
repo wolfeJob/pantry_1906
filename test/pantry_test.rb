@@ -37,8 +37,12 @@ class PantryTest < Minitest::Test
   def test_enough_ingredients_for_recipe
     @pantry.restock(@cheese, 5)
     @pantry.restock(@cheese, 10)
-    binding.pry
+    # binding.pry
     refute @pantry.enough_ingredients_for?(@mac_and_cheese)
+    @pantry.restock(@mac, 7)
+    refute @pantry.enough_ingredients_for?(@mac_and_cheese)
+    @pantry.restock(@mac, 1)
+    assert @pantry.enough_ingredients_for?(@mac_and_cheese)
   end
 
 end
