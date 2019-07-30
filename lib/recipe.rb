@@ -9,5 +9,7 @@ class Recipe
     @ingredients_required[ingredient] += amount
   end
 
-
+  def amount_required(ingredient)
+    @ingredients_required[ingredient]
+  end
 end
