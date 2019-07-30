@@ -8,7 +8,6 @@
 * Push your solution to your forked repo
 * Submit a pull request from your repository to this repository
   * Put your name in your PR!
-  * Indicate which Iteration you have _completed_.
 
 ## Iteration 1
 
@@ -18,16 +17,74 @@ Use TDD to build an `Ingredient` class with the following attributes:
 * `unit` - the unit in which the ingredient is measured
 * `calories` - the amount of calories per unit of the ingredient.
 
+The `Ingredient` class should respond to the following interaction pattern:
+
+```ruby
+pry(main)> require './lib/ingredient'
+# => true
+
+pry(main)> cheese = Ingredient.new("Cheese", "oz", 50)
+# => #<Ingredient:0x007fe6041273d8...>
+
+pry(main)> cheese.name
+# => "Cheese"
+
+pry(main)> cheese.unit
+# => "oz"
+
+pry(main)> cheese.calories
+# => 50
+```
+
 ## Iteration 2
 
-Use TDD to build a `Recipe` class that responds to the following:
+Use TDD to build a `Recipe` class that responds to the following interaction pattern.
 
-* The recipe should have a name and way to read that data.
-* The recipe should be able to add ingredients and quantity needed for the recipe. Use the method name `add_ingredient` and have it take 2 arguments.
-* The recipe should be able to list all of its ingredients.
-* The recipe should be able to check the quantity needed of a given ingredient to make that recipe.
-* The recipe should be able to find the total number of calories in that dish.
+For the `add_ingredient` method, the first argument is an Ingredient, and the second argument is the amount of the ingredient required for the Recipe.
 
+The `total_calories` method should sum the calories of each ingredient. The calories for each ingredient can be calculated by multiplying the `calories` attribute of the Ingredient by the amount of the ingredient required for the recipe.
+
+```ruby
+pry(main)> require './lib/ingredient'
+# => true
+
+pry(main)> require './lib/recipe'
+# => true
+
+pry(main)> cheese = Ingredient.new("Cheese", "C", 100)
+# => #<Ingredient:0x007fe8438c7a70...>
+
+pry(main)> mac = Ingredient.new("Macaroni", "oz", 30)
+# => #<Ingredient:0x007fe843857f40...>
+
+pry(main)> mac_and_cheese = Recipe.new("Mac and Cheese")
+# => #<Recipe:0x007fe84383d000...>
+
+pry(main)> mac_and_cheese.name
+# => "Mac and Cheese"
+
+pry(main)> mac_and_cheese.ingredients_required
+# => {}
+
+pry(main)> mac_and_cheese.add_ingredient(cheese, 2)
+
+pry(main)> mac_and_cheese.add_ingredient(mac, 8)
+
+pry(main)> mac_and_cheese.ingredients_required
+# => {#<Ingredient:0x00007fd7811553c8...> => 2, #<Ingredient:0x00007fd78110b0e8...> => 8}
+
+pry(main)> mac_and_cheese.amount_required(cheese)
+# => 2
+
+pry(main)> mac_and_cheese.amount_required(mac)       
+# => 8
+
+pry(main)> mac_and_cheese.ingredients
+# => [#<Ingredient:0x007fe8438c7a70...>, #<Ingredient:0x007fe843857f40...>]
+
+pry(main)> mac_and_cheese.total_calories
+# => 440
+```
 
 ## Iteration 3
 
@@ -75,7 +132,12 @@ pry(main)> pantry.stock_check(cheese)
 pry(main)> pantry.enough_ingredients_for?(mac_and_cheese)
 # => false
 
-pry(main)> pantry.restock(mac, 8)
+pry(main)> pantry.restock(mac, 7)
+
+pry(main)> pantry.enough_ingredients_for?(mac_and_cheese)
+# => false
+
+pry(main)> pantry.restock(mac, 1)
 
 pry(main)> pantry.enough_ingredients_for?(mac_and_cheese)
 # => true
