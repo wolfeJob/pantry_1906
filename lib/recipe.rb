@@ -16,4 +16,11 @@ class Recipe
   def ingredients
     @ingredients_required.keys
   end
+
+  def total_calories
+  #8 * 30 = 240
+  #2 * 100 = 200 = 440
+    @ingredients_required.map{|k,v| k.calories * v}.sum
+  end
+  
 end
