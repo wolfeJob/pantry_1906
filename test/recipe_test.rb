@@ -21,4 +21,14 @@ class RecipeTest < Minitest::Test
     assert_equal ({}), @mac_and_cheese.ingredients_required
   end
 
+  def test_add_ingredients
+    @mac_and_cheese.add_ingredients(@cheese, 2)
+    @mac_and_cheese.add_ingredients(@mac, 8)
+    expected = {
+            @cheese => 2,
+            @mac => 8
+              }
+    assert_equal expected, @mac_and_cheese.ingredients_required
+  end
+
 end
