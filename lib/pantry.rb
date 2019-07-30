@@ -13,11 +13,12 @@ class Pantry
   end
 
   def enough_ingredients_for?(recipe)
-  
-    stock_sum = []
-    arg_sum = []
-    stock_sum << @stock.fetch_values(recipe.ingredients.name)
-    arg_sum <<   recipe.ingredients_required.fetch_values(recipe.ingredients.name)
-    stock_sum.sum == arg_sum.sum
+  arg_ingredients = recipe.ingredients
+  arg_ingredients.each do |ingredient|
+    @stock.find_all do |stocked_ingredient, amount|
+      if ingredient == stocked_ingredient
+        
+
+
   end
 end
